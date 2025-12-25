@@ -1,0 +1,659 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #110F14;
+    color: #fff4d8;
+    font-family: rayway_f, sans-serif;
+    line-height: 1.55;
+    cursor: url(../img/icons8-cursor-32.png), auto;
+    margin: 0;
+    height: 100vh; /* нужен скролл */
+}
+
+:root{
+--index: calc(1vw + 1vh)
+/* для резиновости элементов потом в адаптив добавлю */
+}
+
+
+
+
+.head::after {
+ content: '';
+ position: absolute;
+ z-index: 100;
+ width: 100%;
+ height: calc(var(--index) * 10);
+ background-image: url(../img/ground.png);
+ background-size: cover;
+ background-repeat: no-repeat;
+ background-position: center;
+ bottom: calc(var(--index) * -4.5);
+}
+
+
+
+/* .l_title img{
+  position: absolute;   
+  left: 50%;                   
+  top: 0;
+  transform: translateX(-50%);
+  width: 100%;
+  height: auto;
+}
+
+.l_title .dark{
+  opacity: 1;                 
+  z-index: 1;
+}
+
+
+.l_title .light{
+  opacity: 0;                  
+  z-index: 2;
+  animation: neonOn 2.5s ease-in-out infinite;       
+  animation-delay: .35s;                            
+}
+
+
+@keyframes neonOn{
+  0%,35% { opacity: 0; }
+  45%    { opacity: 1; }
+  55%    { opacity: .85; }
+  60%    { opacity: 1; }
+  100%   { opacity: 1; }
+}
+
+.l_head {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  transform-origin: center;
+  padding-top: 2.8vw;
+  z-index: 3;
+  min-height: 100vh;
+} */
+
+
+/* фикс скролла по X на всякий случай */
+body { overflow-x: hidden; }
+
+
+/* чтобы UI не добавлял высоту странице */
+.l_head{
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  padding-top: 2.8vw;
+  z-index: 999;
+  pointer-events: none;
+}
+
+/* контейнер надписи: задаём ширину (и она станет “в 2 раза меньше”) */
+.l_title{
+  width: clamp(420px, 55vw, 820px);
+  margin-top: 4vw;
+  display: grid;           /* ключ */
+  place-items: center;     /* центр */
+}
+
+/* обе картинки ложатся в одну ячейку */
+.l_title img{
+  grid-area: 1 / 1;
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* слои свечения */
+.l_title .dark{ display: none; }
+.l_title .light{
+  width: 100%;
+  height: auto;
+  opacity: 0;
+
+  /* filter:
+    drop-shadow(0 0 16px rgba(255, 210, 120, 0.9))
+    drop-shadow(0 0 40px rgba(255, 170, 0, 0.7)); */
+
+  animation: neonOn 2.5s ease-out infinite;
+}
+
+
+@keyframes neonOn{
+  0%,35% { opacity: 1; }
+  45%    { opacity: 1; }
+  55%    { opacity: .6; }
+  60%    { opacity: 1; }
+  100%   { opacity: .59; }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+.layers {
+  position: relative ;
+  margin: 0;
+  height: 100vh;   
+  overflow: hidden;
+}
+
+.base,
+.middle2,
+.middle,
+.front {
+  position: absolute;
+  inset: 0;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+
+  /* animation-timeline: scrollParallax;
+  animation-fill-mode: both; */
+}
+ 
+/* @scroll-timeline scrollParallax {
+    source: auto; 
+    orientation: block;
+    scroll-offsets: start end;
+}  */
+ /* флаги в хроме устарели, и теперь паралакс по скроллу просто нереально сделать без джс */
+
+.base{
+    background-image: url(../img/base.png);
+    z-index: 1;
+}
+
+.middle2{
+   animation: m2 3s infinite alternate; 
+   background-image: url(../img/middle2.png);
+   z-index: 2;
+}
+
+
+@keyframes m2 {
+  from { transform: translateY(0)  ;}
+    to { transform: translateY(10px) ;}
+}
+
+
+
+.middle{
+  animation: m1 3s infinite alternate;
+  background-image: url(../img/middle.png);
+  z-index: 4; 
+}
+
+@keyframes m1 {
+  from { transform: translateY(0)  ;}
+    to { transform: translateY(25px) ;}
+}
+
+
+
+.front{
+  animation: f 3s infinite alternate; 
+  background-image: url(../img/front.png);
+  z-index: 5;
+}
+
+@keyframes f {
+  from { transform: translateY(0)  ;}
+    to { transform: translateY(30px) ;}
+}
+
+
+
+.l_caption{
+   position: relative;
+   z-index: 3;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   width: 192.23px;
+   height: 187.63px;
+   transform-origin: center;
+   transform-style: preserve-3d;
+   animation: ol 3s linear infinite;
+}
+
+@keyframes ol{
+    0%{ transform: rotateY(0deg);}
+    100%{ transform: rotateY(360deg);}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.sec{
+    height: 100vh;
+    cursor: url(../img/icons8-cursor.png), auto;
+}
+.layers2{
+    position: relative;   
+    width: 100%;
+    height: 100%;
+}
+
+
+.ls_front3 ,.ls_base2{
+    position: absolute;
+    inset: 0;
+}
+
+.ls_front3 img{
+    width: 99vw;
+    height: 110vh;
+    z-index: 10;
+}
+
+
+.ls_base2{
+    background-size: cover;
+    background-position: center;
+    color: var(--text);
+    position: relative;
+    background: url(../img/flowers.png);
+    width: 1440px;
+    height: 810px;
+    z-index: 0;
+    display: block;
+    animation: flo 1.5s steps(1) infinite;
+    background-repeat: no-repeat;
+    cursor: url(../img/icons8-cursor.png), auto;
+}
+
+
+@keyframes flo{
+     0%{ background-position: 0px 0px; }
+    20%{ background-position: -1440px 0px; }
+    40%{ background-position: -2880px 0px; }
+    60%{ background-position: -4320px 0px; }
+    80%{ background-position: -5760px 0px; }
+}
+
+
+.ls_text{
+    position: absolute;   
+    right: 16vw;           
+    bottom: 9vw;          
+    color: #ffefc5;    
+    font-size: 26px;   
+    line-height: 1.3; 
+    text-align: center;
+
+    width: 36ch;
+    white-space: nowrap ;              
+    overflow: hidden;                 
+    border-right: 0px solid #fff;     
+    
+    clip-path: inset(0 100% 0 0 );
+    animation: typing 3s linear infinite, blink 0s step-end infinite;
+
+    /* animation-delay: 0s, 3s; */
+    /* blink 0.7s infinite; */
+}
+
+@keyframes typing {
+    0%   { clip-path: inset(0 100% 0 0); }
+    30%  { clip-path: inset(0 0 0 0); }   /* напечаталась */
+    65%  { clip-path: inset(0 0 0 0); }   /* ждёт вторую */
+    100% { clip-path: inset(0 0 0 0); }/* очистка */
+    /* 100% { clip-path: inset(0 100% 0 0); }очистка */
+}
+
+
+
+
+.ls_text2{
+    position: absolute;   
+    right: 16vw;           
+    bottom: 7vw;          
+    color: #ffefc5;    
+    font-size: 26px;   
+    line-height: 1.3; 
+    text-align: center;
+
+    width: 36ch;
+    white-space: nowrap ;              
+    overflow: hidden;                 
+    border-right: 0px solid #fff;     
+    clip-path: inset(0 100% 0 0 );
+    animation: typing2 3s steps(26) infinite, blink 0.7s step-end infinite;
+
+    animation-delay: 3s;
+}
+
+
+@keyframes typing2 {
+    0%   { clip-path: inset(0 100% 0 0); }
+    30%  { clip-path: inset(0 100% 0 0); } /* ждёт первую */
+    60%  { clip-path: inset(0 0 0 0); }    /* печать */
+    100%  { clip-path: inset(0 0 0 0); }    /* зановн */
+    /* 100% { clip-path: inset(0 100% 0 0); } очистка */
+}
+
+/* мигающий курсор */
+@keyframes blink {
+  50% { border-color: transparent; }
+}
+
+
+/* .steklo{
+    position: absolute;   
+    width: 36ch;
+    padding: 20px 26px;
+    border-radius: 5em;
+    
+
+    background: transparent;
+    border: rgb(255, 255, 255/ .4) 3px solid;
+    z-index: 10;
+
+    overflow: hidden;
+    position: relative;
+    
+} */
+
+/* .sec{
+    position: relative;
+    min-height: 100vh;
+} */
+.sec::after {
+ content: '';
+ position: absolute;
+ margin-top: -0.5vw;
+ z-index: 100;
+ width: 120%; 
+ height: calc(var(--index) * 1);
+ background-image: url(../img/ground2.png);
+ background-size: cover;
+ background-repeat: no-repeat;
+ background-position: center;
+ /* bottom: calc(var(--index) * -4.5); */
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.sec2{
+    height: 100vh;
+    position: relative;
+    overflow: hidden;
+
+    background: linear-gradient(
+        /* 120deg, #01245F, #01163b, #01245F */
+         120deg, #01081e,#0b274f,#03070e,#0b274f,#01081e
+    );
+    background-size: 400% 400% ;
+    animation: gr 18s ease infinite;
+    cursor: url(../img/icons8-cursor-32\ \(1\).png), auto;
+}
+
+@keyframes gr {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+
+.layers3{
+    position: relative;   
+    width: 100%;
+    height: 100%;
+
+}
+.ls_front4 ,.ls_base3{
+    position: absolute;
+    inset: 0;
+}
+
+.ls_front4{
+    margin-left: -1vw;
+}
+.ls_front4 img{
+    width: 101vw;
+    height: 100vh;
+    z-index: 10;
+}
+
+.ls_base3{
+    background-size: cover;
+    background-position: center;
+    color: var(--text);
+    position: relative;
+    background: url(../img/water.png);
+    width: 1440px;
+    height: 810px;
+    z-index: 0;
+    display: block;
+    animation: wat 1s steps(1) infinite;
+    background-repeat: no-repeat;
+}
+
+
+@keyframes wat{
+     0%{ background-position: 0px 0px; }
+    25%{ background-position: -1440px 0px; }
+    50%{ background-position: -2880px 0px; }
+    75%{ background-position: -4320px 0px; }
+
+}
+
+.pict{
+    display: flex;
+    gap: 5px;
+    /* z-index: 10; */
+    align-items: center;
+    justify-content: center; 
+}
+.pict img{
+    display: block;
+    max-width: 100%;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.podval{
+    display: flex;
+    gap: 10vw ;
+    width: auto;
+    height: 16.875vw;
+    position: relative;
+    cursor: url(../img/icons8-cursor-32\ \(1\).png), auto;
+    font-family: granit;
+}
+
+
+
+.p1{
+    position: relative;
+    width: 16.875vw;
+    height: 16.875vw;
+    overflow: hidden;  
+    cursor: url(../img/icons8-cursor-32.png), auto;
+}
+
+.mouse1, .mouse2{
+    width: 100%; 
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+.mouse1{
+    position: absolute;
+    transition: all 0.9s;
+}
+.p1:hover .mouse1{
+    opacity: 0;
+    animation: hov1 2s linear;
+}
+
+
+
+.p2{
+    position: relative;
+    width: 16.875vw;
+    height: 16.875vw;
+    overflow: hidden;  
+     cursor: url(../img/icons8-cursor.png), auto;
+}
+
+.fox1, .fox2{
+    width: 100%; 
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+.fox1{
+    position: absolute;
+    transition: all 0.9s;
+}
+.p2:hover .fox1{
+    opacity: 0;
+    animation: hov1 2s linear;
+}
+
+
+
+
+.p3{
+    position: relative;
+    width: 16.875vw;
+    height: 16.875vw;
+    overflow: hidden; 
+    cursor: url(../img/icons8-cursor.png), auto;
+}
+
+.rabbit1, .rabbit2{
+    width: 100%; 
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+.rabbit1{
+    position: absolute;
+    transition: all 0.9s;
+}
+.p3:hover .rabbit1{
+    opacity: 0;
+    animation: hov1 2s linear;
+}
+
+
+
+
+.p4{
+    position: relative;
+    width: 16.875vw;
+    height: 16.875vw;
+    overflow: hidden;  
+     cursor: url(../img/icons8-cursor-32.png), auto;
+}
+
+.deer1, .deer2{
+    width: 100%; 
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+.deer1{
+    position: absolute;
+    transition: all 0.9s;
+}
+.p4:hover .deer1{
+    opacity: 0;
+    animation: hov1 2s linear;
+}
+
+.t1{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 10;
+    text-align: center;
+    color: #ffe6a8;
+    font-size: 50px;
+}
+
+
+
+
+
+
+
+

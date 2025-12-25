@@ -1,0 +1,128 @@
+@media (max-width: 414px){
+
+  html, body{ overflow-x: hidden; }
+
+
+  .head, .sec, .sec2, .podval{
+    width: 100%;
+    max-width: 100%;
+    overflow: hidden;
+  }
+
+
+  .l_caption{  
+  width: 193.23px;
+  height: 188.63px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transform-origin: center;
+  }
+
+
+
+  /* ============
+     1 экран
+     ============ */
+  .layers{
+    width: 100%;
+    height: 100svh;
+    overflow: hidden;
+    position: relative;
+  }
+
+  /* Ключ: показываем сцену “как есть”, не cover, а contain */
+  .base, .middle2, .middle, .front{
+    background-size: contain !important;
+    background-position: center !important;
+  }
+
+  /* значок по центру, надпись убрать */
+  .l_title{ display: none !important; }
+
+  .l_head{
+    position: absolute !important;
+    inset: 0 !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    padding-top: 0 !important;
+    z-index: 999 !important;
+  }
+
+  .l_caption{
+    width: 140px !important;
+    height: 140px !important;
+  }
+
+  /* =====================
+     2 экран — убрать текст, сцена как макет
+     ===================== */
+  .steklo, .ls_text, .ls_text2{ display: none !important; }
+
+  .sec{
+    height: 100svh;
+    position: relative;
+    overflow: hidden;
+  }
+
+  /* если второй экран тоже из background слоёв */
+  .sec .base, .sec .middle2, .sec .middle, .sec .front{
+    background-size: contain !important;
+    background-position: center !important;
+  }
+
+  /* =====================
+     3 экран water — ничего не “кривим”, просто contain и центр
+     ===================== */
+  .ls_base3{
+    background-size: contain !important;
+    background-position: center !important;
+    transform: none !important;
+  }
+
+  /* =====================
+     подвал — ряд + авто мигание
+     ===================== */
+  .podval{
+    display: flex !important;
+    flex-direction: row !important;
+    flex-wrap: wrap !important;
+    justify-content: center !important;
+    gap: 12px !important;
+    height: auto !important;
+    padding: 14px 0 18px !important;
+  }
+
+  .p1,.p2,.p3,.p4{
+    width: 42vw !important;
+    height: 42vw !important;
+    max-width: 180px;
+    max-height: 180px;
+  }
+
+  .t1{
+    position: static !important;
+    transform: none !important;
+    width: 100% !important;
+    order: 10 !important;
+    margin-top: 10px !important;
+    text-align: center !important;
+    font-size: 24px !important;
+  }
+
+  @keyframes swapA { 0%,45%{opacity:1} 50%,95%{opacity:0} 100%{opacity:1} }
+  @keyframes swapB { 0%,45%{opacity:0} 50%,95%{opacity:1} 100%{opacity:0} }
+
+  .p1 .mouse1{ animation: swapA 2.2s infinite; }
+  .p1 .mouse2{ animation: swapB 2.2s infinite; }
+
+  .p2 .fox1{   animation: swapA 2.2s infinite; animation-delay: .2s; }
+  .p2 .fox2{   animation: swapB 2.2s infinite; animation-delay: .2s; }
+
+  .p3 .rabbit1{animation: swapA 2.2s infinite; animation-delay: .4s; }
+  .p3 .rabbit2{animation: swapB 2.2s infinite; animation-delay: .4s; }
+
+  .p4 .deer1{  animation: swapA 2.2s infinite; animation-delay: .6s; }
+  .p4 .deer2{  animation: swapB 2.2s infinite; animation-delay: .6s; }
+}
